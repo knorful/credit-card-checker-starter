@@ -67,5 +67,31 @@ const validateCred = (cNum) => {
 const findInvalidCards = (batch) => {
   return batch.filter((numbers) => !validateCred(numbers));
 };
-findInvalidCards(batch);
+
+const idInvalidCardCompanies = (invalids) => {
+  let invalidCompanies = invalids.map((invalid) => {
+    let firstDigit = Number(invalid.toString()[0]);
+    switch (firstDigit) {
+      case 3:
+        return "Amex";
+        break;
+      case 4:
+        return "Visa";
+        break;
+      case 5:
+        return "Mastercard";
+        break;
+      case 6:
+        return "Discover";
+        break;
+      default:
+        return "Company not found";
+        break;
+    }
+  });
+
+  return [...new Set(invalidCompanies.map((company) => company))];
+};
+
+console.log(idInvalidCardCompanies(findInvalidCards(batch)));
 validateCred(mystery5);
