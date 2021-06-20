@@ -41,7 +41,7 @@ const batch = [
 // Add your functions below:
 const validateCred = (cNum) => {
   //reverse cNum array and then get/remove first value (check value)
-  let reversed = cNum.reverse();
+  let reversed = cNum.slice().reverse();
   //create afterCalc array for after doubling and/or subtracting steps -> assign check value to afterCalc array
   let afterCalc = [reversed[0]];
   //create sum variable
@@ -64,4 +64,8 @@ const validateCred = (cNum) => {
   return sum % 10 === 0;
 };
 
-console.log(validateCred(mystery5));
+const findInvalidCards = (batch) => {
+  return batch.filter((numbers) => !validateCred(numbers));
+};
+findInvalidCards(batch);
+validateCred(mystery5);
